@@ -1,24 +1,30 @@
 {
-  "name": "natours",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Nostafa/natours.git"
-  },
-  "keywords": [
-    "Node.js",
-    "MongoDB",
-    "Express"
-  ],
-  "author": "Mustafa",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Nostafa/natours/issues"
-  },
-  "homepage": "https://github.com/Nostafa/natours#readme"
+    "name": "natours",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Nostafa/natours.git"
+    },
+    "keywords": [
+        "Node.js",
+        "MongoDB",
+        "Express"
+    ],
+    "author": "Mustafa",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Nostafa/natours/issues"
+    },
+    "homepage": "https://github.com/Nostafa/natours#readme",
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "express": "^4.18.0",
+        "morgan": "^1.10.0"
+    }
 }
