@@ -3,6 +3,9 @@ const router = express.Router();
 const tourController = require('../controllers/tourControllers');
 
 router
+    .route('/topFive')
+    .get(tourController.getTopFive, tourController.getAllTours);
+router
     .route('/')
     .get(tourController.getAllTours)
     .post(tourController.createTour);

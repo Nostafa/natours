@@ -6,7 +6,11 @@ const userRouter = require('./router/user.routes');
 const tourRouter = require('./router/tour.routes');
 
 // 1) Middleware
-app.use(morgan('dev'));
+if (process.env.NODE_ENV == 'development') {
+    app.use(morgan('dev'));
+} else if (process.env.NODE_ENV == 'production') {
+    app.use(morgan('tiny'));
+}
 app.use(express.json());
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
@@ -14,9 +18,7 @@ app.use((req, res, next) => {
 });
 
 // 3) Routes
-app.use('/app/v1/tours', userRouter);
-app.use('/app/v1/tours', tourRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/api/v1/tours', tourRouter);
 
-// 4) start Server
-const Port = 3000;
-app.listen(Port, () => console.log(`Server is running on port ${Port}...`));
+module.exports = app;
