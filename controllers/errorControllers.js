@@ -18,6 +18,14 @@ const validationHandlerDB = (err) => {
     return new AppError(message, 400);
 };
 
+const tokenErrorHandler = (err) => {
+    return new AppError('Invalid token! please login again', 401);
+};
+
+const tokenExpiredErrorHandler = (err) => {
+    return new AppError('Your token has expired. Please try login again', 401);
+};
+// ********************************************************
 const sendErrorDevelopment = (err, res) => {
     res.status(err.statusCode).json({
         status: err.status,
@@ -60,7 +68,11 @@ module.exports = (err, req, res, next) => {
             errorMessage = duplicateFieldHandlerDB(err);
         } else if (err.name == 'ValidationError') {
             errorMessage = validationHandlerDB(err);
+        } else if (err.name == 'JsonWebTokenError') {
+            errorMessage = tokenErrorHandler(err);
+        } else if (err.name == 'TokenExpiredError') {
+            errorMessage = tokenExpiredErrorHandler(err);
         }
-        SendErrorProduction(errorMessage, res);
+        SendErrorProduction(errorMessage || err, res);
     }
 };
