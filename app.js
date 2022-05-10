@@ -13,6 +13,7 @@ const AppError = require('./utils/appError');
 // Middlewares Routes
 const userRouter = require('./router/user.routes');
 const tourRouter = require('./router/tour.routes');
+const reviewRouter = require('./router/review.routes');
 
 // 1) Middleware
 
@@ -62,6 +63,7 @@ app.use((req, res, next) => {
 // 3) Routes
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/review', reviewRouter);
 app.all('*', (req, res, next) => {
     // const err = new Error(`Can't find ${req.originalUrl} on this server`);
     // err.status = 'fail';

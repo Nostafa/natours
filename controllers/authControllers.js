@@ -20,6 +20,7 @@ const createSendToken = (user, statusCode, res) => {
         ),
         httpOnly: true,
     };
+
     if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
     res.cookie('JWT', token, cookieOptions);
 
@@ -107,7 +108,7 @@ exports.protect = catchAsync(async(req, res, next) => {
                 new AppError('User recently changed password! Please log in again', 401)
             );
         }
-        // //* GRANT ACCESS TO PROTECTED ROUTE
+        //* GRANT ACCESS TO PROTECTED ROUTE
         req.user = currentUser;
         next();
     }
