@@ -37,6 +37,9 @@ exports.updateReview = catchAsync(async(req, res, next) => {
         next(AppError('no review found with that Id', 404));
 });
 exports.createReview = catchAsync(async(req, res, next) => {
+    if (!req.body.tour) req.body.tour = req.params.tourId;
+    if (!req.body.user) req.body.user = req.user.id;
+
     const review = await Review.create({
         review: req.body.review,
         rating: req.body.rating,
